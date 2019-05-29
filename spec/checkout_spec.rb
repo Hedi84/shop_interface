@@ -11,14 +11,14 @@ describe '#checkout' do
 
   let(:checkout) {Checkout.new(rules)}
 
-  it 'Expect total of A, B, C to equal 100' do
+  it 'Gives a total of 100 for A, B, C' do
     checkout.scan("A")
     checkout.scan("B")
     checkout.scan("C")
     expect(checkout.total).to eq(100)
   end
 
-  it 'Expect total of B, A, B, A, A to equal 110' do
+  it 'Gives a total of 110 for B, A, B, A, A' do
     checkout.scan("B")
     checkout.scan("A")
     checkout.scan("B")
@@ -27,7 +27,7 @@ describe '#checkout' do
     expect(checkout.total).to eq(110)
   end
 
-  it 'Expect total of C, B, A, A, D, A, B to equal 155' do
+  it 'Gives a total of 155 for C, B, A, A, D, A, B' do
     checkout.scan("C")
     checkout.scan("B")
     checkout.scan("A")
@@ -38,7 +38,7 @@ describe '#checkout' do
     expect(checkout.total).to eq(155)
   end
 
-  it 'Expect total of C, A, D, A, A to equal 140' do
+  it 'Gives a total of 140 for C, A, D, A, A' do
     checkout.scan("C")
     checkout.scan("A")
     checkout.scan("D")
@@ -47,11 +47,16 @@ describe '#checkout' do
     expect(checkout.total).to eq(140)
   end
 
-  it 'Expect total of 9 x A to equal 205' do
+  it 'gives a total of 205 for 9 times \'A\'' do
     9.times do
       checkout.scan("A")
     end
     expect(checkout.total).to eq(205)
+  end
+
+  it 'Reads items' do
+    checkout.scan("A")
+    expect(checkout.items).to eq(["A"])
   end
 
 end

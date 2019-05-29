@@ -2,7 +2,7 @@ require_relative '../items'
 
 class Checkout
   attr_accessor :items
-  attr_reader :rules, :total
+  attr_reader :rules
 
   def initialize(rules)
     @rules = rules
@@ -15,6 +15,8 @@ class Checkout
   end
 
   def total
+    #  basket_promotion is run after other promotions, since it could change the
+    # basket value
     apply_promotions
     basket_promotion
     total = calculate_balance + @balance
@@ -32,6 +34,8 @@ class Checkout
   end
 
   def apply_promotions
+    # more promotions can be added to this if statement or separate methods can
+    # be added and included in the total method to manipulate order
     @rules.each do |rule|
       if rule.class == QuantityPromotion
         num = rule.calculate_quantity_discount(@items)
