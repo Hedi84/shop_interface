@@ -1,12 +1,16 @@
-require_relative 'checkout'
+require_relative 'models/checkout'
+require_relative 'models/basket_promotion'
+# require_relative 'models/checkout'
+# require_relative 'models/checkout'
 
+rules = []
+rule1 = BasketPromotion.new(150, 20)
+rules << rule1
+co = Checkout.new(rules)
 
-# rules will be passed as a hash of hashes that has fixed keys for different
-# types of discounts, these can be altered and added to.
-co = Checkout.new
-
-co.scan("A")
-co.scan("B")
+co.scan("C")
+co.scan("C")
+co.scan("C")
 price = co.total
 items = co.items
 puts price
