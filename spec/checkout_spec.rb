@@ -4,8 +4,6 @@ require_relative '../lib/models/basket_promotion'
 require_relative '../lib/models/quantity_promotion'
 require_relative '../lib/models/coupon_promotion'
 
-
-
 describe '#checkout' do
   let(:rules) { rule1 = BasketPromotion.new(150, 20),
   rule2 = QuantityPromotion.new({"A" => 3}, 15),
@@ -48,4 +46,12 @@ describe '#checkout' do
     checkout.scan("A")
     expect(checkout.total).to eq(140)
   end
+
+  it 'Expect total of 9 x A to equal 205' do
+    9.times do
+      checkout.scan("A")
+    end
+    expect(checkout.total).to eq(205)
+  end
+
 end

@@ -4,12 +4,12 @@ require_relative 'models/quantity_promotion'
 require_relative 'models/coupon_promotion'
 
 rules = []
-rule1 = BasketPromotion.new(150, 20)
-rules << rule1
-rule2 = QuantityPromotion.new({"A" => 3}, 15)
-rules << rule2
-rule3 = QuantityPromotion.new({"B" => 2}, 5)
-rules << rule3
+# rule1 = BasketPromotion.new(150, 20)
+# rules << rule1
+# rule2 = QuantityPromotion.new({"A" => 3}, 15)
+# rules << rule2
+# rule3 = QuantityPromotion.new({"B" => 2}, 5)
+# rules << rule3
 # rule4 = CouponPromotion.new('freeshipping')
 # rules << rule4
 co = Checkout.new(rules)
