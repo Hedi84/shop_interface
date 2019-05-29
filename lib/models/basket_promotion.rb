@@ -7,7 +7,7 @@ class BasketPromotion
     @discount = discount
   end
 
-  def calculate_basket(total_price)
+  def calculate_basket_discount(total_price)
     total_price >= @limit ? answer = true : answer = false
     return answer
   end

@@ -7,27 +7,45 @@ class Checkout
   def initialize(rules)
     @rules = rules
     @items = []
-    @total = 0
+    @balance = 0
   end
 
   def scan(item)
     @items << item
-    apply_promotions
   end
+
 
   def apply_promotions
     @rules.each do |rule|
       if rule.class == BasketPromotion
-        total_basket = 0
-        @items.each do |item|
-          total_basket += ITEMS[item]
+        total_basket = calculate_balance
+        if rule.calculate_basket_discount(total_basket)
+          @balance -= rule.discount
         end
-        if rule.calculate_basket(total_basket)
-          @total -= rule.discount
+      elsif rule.class == QuantityPromotion
+        if rule.calculate_quantity_discount(@items)
+          @balance -= rule.discount
         end
+      elsif rule.class == CouponPromotion
+        @balance -= rule.calculate_coupon_discount(rule.couponcode)
       end
     end
   end
 
+  def total
+    apply_promotions
+    total = calculate_balance + @balance
+    return total
+  end
+
+  private
+
+  def calculate_balance
+    total_basket = 0
+    @items.each do |item|
+      total_basket += ITEMS[item]
+    end
+    return total_basket
+  end
 
 end
