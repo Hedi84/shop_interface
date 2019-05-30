@@ -11,9 +11,8 @@ class CouponPromotion
   def coupon_discount(total)
     if COUPONS[@couponcode][0] == 'percentage'
       discount = (COUPONS[@couponcode][1].to_f/100) * total
-      return discount
     elsif COUPONS[@couponcode][0] == 'sum'
-      return COUPONS[@couponcode][1]
+      COUPONS[@couponcode][1]
     end
   end
 end
