@@ -17,11 +17,11 @@ describe '#quantity_promotion' do
   end
 
   it 'Calculate_quantity_discount returns 1 for 4 \'D\' items' do
-    expect(promotion.calculate_quantity_discount(['D', 'D', 'D', 'D'])).to eq(1)
+    expect(promotion.quantity_discount(['D', 'D', 'D', 'D'])).to eq(1)
   end
 
   it 'Calculate_quantity_discount returns 0 without 4 \'D\' items' do
-    expect(promotion.calculate_quantity_discount(['D', 'A', 'D', 'B'])).to eq(0)
+    expect(promotion.quantity_discount(['D', 'A', 'D', 'B'])).to eq(0)
   end
 
 end

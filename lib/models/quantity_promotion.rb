@@ -7,7 +7,7 @@ attr_reader :discount
     @discount = discount
   end
 
-  def calculate_quantity_discount(items_array)
+  def quantity_discount(items_array)
     answer = nil
     @quantity_hash.each do |key, value|
       if items_array.count(key) < value

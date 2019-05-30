@@ -10,11 +10,11 @@ describe '#coupon_promotion' do
   end
 
   it 'Gives £5 discount' do
-    expect(promotion.calculate_coupon_discount(150)).to eq(5)
+    expect(promotion.coupon_discount(150)).to eq(5)
   end
 
   it 'Gives 20% discount' do
-    expect(promotion2.calculate_coupon_discount(200)).to eq(40)
+    expect(promotion2.coupon_discount(200)).to eq(40)
   end
 
 end

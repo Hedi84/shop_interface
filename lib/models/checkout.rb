@@ -38,10 +38,10 @@ class Checkout
     # be added and included in the total method to manipulate order
     @rules.each do |rule|
       if rule.class == QuantityPromotion
-        num = rule.calculate_quantity_discount(@items)
+        num = rule.quantity_discount(@items)
         @balance -= (rule.discount * num)
       elsif rule.class == CouponPromotion
-        @balance -= rule.calculate_coupon_discount(rule.couponcode)
+        @balance -= rule.coupon_discount(rule.couponcode)
       end
     end
   end
@@ -50,7 +50,7 @@ class Checkout
     @rules.each do |rule|
       if rule.class == BasketPromotion
         total_basket = calculate_balance + @balance
-        rule.calculate_basket_discount(total_basket) ? @balance -= rule.discount : nil
+        rule.basket_discount(total_basket) ? @balance -= rule.discount : nil
       end
     end
   end
