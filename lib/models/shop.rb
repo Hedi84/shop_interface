@@ -1,6 +1,6 @@
 require_relative '../items'
 
-class Checkout
+class Shop
   attr_accessor :items
   attr_reader :rules
 
@@ -10,7 +10,7 @@ class Checkout
     @balance = 0
   end
 
-  def scan(item)
+  def add_to_basket(item)
     @items << item
   end
 
